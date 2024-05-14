@@ -302,14 +302,16 @@
        (map protocols/bindings)
        (apply merge-with-key (partial intersect-bindings e))))
 
+(defn construct-term [clojure-fn ast-constructor-fn & args]
+  (if (some cacheing-decisions args)
+    (cacheing-validate (ast-constructor-fn args))
+    (apply clojure-fn args)))
+
 (defn rewrite-fn [form-fn]
   (let [ast-constructor-fn (protocols/rewrite-function form-fn)]
     (if (= form-fn ast-constructor-fn)
       form-fn
-      (fn [& args]
-        (if (some cacheing-decisions args)
-          (cacheing-validate (ast-constructor-fn args))
-          (apply form-fn args))))))
+      (partial construct-term form-fn ast-constructor-fn))))
 
 (defn fn-inspect
   "returns true if x is a symbol that resolves to a fn whose var satisfies var-predicate"

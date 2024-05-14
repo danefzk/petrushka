@@ -27,8 +27,6 @@
   (validate [self] (api/validate-domains self))
   (translate [self] (api/translate-nary-operation "+" (map protocols/translate (:argv self)))))
 
-(defmethod protocols/rewrite-function + [_] ->TermPlus)
-
 (defrecord TermProduct [argv]
   protocols/IExpress
   (write [_self] (apply list '* (map protocols/write argv)))
@@ -38,8 +36,6 @@
   (bindings [self] (api/unify-argv-bindings self))
   (validate [self] (api/validate-domains self))
   (translate [self] (api/translate-nary-operation "*" (map protocols/translate (:argv self)))))
-
-(defmethod protocols/rewrite-function * [_] ->TermProduct)
 
 (defrecord TermMinus [argv]
   protocols/IExpress
