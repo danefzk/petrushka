@@ -200,7 +200,7 @@
   (validate [self] (api/validate-domains self))
   (translate [self] (api/translate-nary-operation "\\/" (map protocols/translate (:argv self)))))
 
-(defmethod 
+#_(defmethod 
   protocols/rewrite-macro 
   (symbols/fully-qualify-symbol 'or)
   [_]
@@ -219,7 +219,7 @@
                      "->" 
                      (map protocols/translate (:argv self)))))
 
-(defmethod 
+#_(defmethod 
   protocols/rewrite-macro 
   (symbols/fully-qualify-symbol 'when)
   [_]

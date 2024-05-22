@@ -2,6 +2,7 @@
   (:require [hyperfiddle.rcf :refer [tests]]
             [petrushka.protocols :as protocols] 
             [petrushka.solver :as solver]
+            [syntheticmusicology.petrushka.core]
             [petrushka.terms.core]
             [petrushka.terms.introduced :as terms.introduced]
             [petrushka.terms.set]
