@@ -1,10 +1,10 @@
 (ns petrushka.terms.core-test
   (:require [hyperfiddle.rcf :refer [tests]]
-            [syntheticmusicology.petrushka.auto :as main :refer [?> bind fresh satisfy solve-for]]
+            [syntheticmusicology.petrushka.auto :as main :refer [?> bind satisfy solve-for]]
             [petrushka.protocols :as protocols]
             [petrushka.types :as types]
             [petrushka.utils.test :refer [only-val throws?]]
-            [syntheticmusicology.petrushka.shared] ;; for defmethods
+            [syntheticmusicology.petrushka.shared :refer [fresh]] ;; for defmethods
             ))
 
 (comment

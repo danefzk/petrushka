@@ -1,10 +1,10 @@
 (ns petrushka.main-test
   (:require [hyperfiddle.rcf :refer [tests]]
             [petrushka.protocols :as protocols]
-            [syntheticmusicology.petrushka.auto :as main :refer [bind ?> fresh satisfy]]
+            [syntheticmusicology.petrushka.auto :as main :refer [bind ?> satisfy]]
             [petrushka.types :as types]
-            [petrushka.utils.test :refer [throws?]]
-            [syntheticmusicology.petrushka.shared :as api]))
+            [syntheticmusicology.petrushka.shared :as api :refer [fresh]]
+            [petrushka.utils.test :refer [throws?]]))
 
 
 (tests "conjunction does not stack overflow on many clauses"

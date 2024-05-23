@@ -16,19 +16,6 @@
   (hyperfiddle.rcf/enable!)
   )
 
-(defn fresh
-  "Mint a fresh decision."
-  ([]
-   (fresh (str (gensym))))
-  ([id]
-   {:pre [(string? id)]}
-   (if (re-matches #"[A-Za-z][A-Za-z0-9_]*" id)
-     (api/->Decision id)
-     (throw (ex-info
-             (>> {:id id}
-                 "Invalid identifier: {{id}}. Identifiers should start with a letter and consist only of letters, numbers, and underscores.")
-             {})))))
-
 (defmacro satisfy
   ([term]
    `(satisfy ~term {}))
@@ -40,14 +27,14 @@
 
 (tests "satisfy"
  (tests "constraint must be boolean"
-        (utils.test/throws? (satisfy (+ (fresh) 1))) := true
-        (utils.test/throws? (satisfy (= (fresh) 1))) := false
+        (utils.test/throws? (satisfy (+ (api/fresh) 1))) := true
+        (utils.test/throws? (satisfy (= (api/fresh) 1))) := false
         ))
 
 (defmacro
   solve-for
   [sym constraint]
-  `(let [~sym (fresh)]
+  `(let [~sym (api/fresh)]
      (get
       (satisfy ~constraint)
       ~sym)))
@@ -62,7 +49,7 @@
      (api/dither ~objective))))
 
 (tests "maximize"
- (-> (let [a (fresh)]
+ (-> (let [a (api/fresh)]
        (maximize a (clojure.core/and (>= a 3000) (= 11 (mod a 12)))))
      first 
      vals
@@ -72,13 +59,13 @@
   (mod 2147483639 12)
 
  (tests "objective must be types/Numeric"
-        (utils.test/throws? (maximize (= (fresh) 1) true)) := true)
+        (utils.test/throws? (maximize (= (api/fresh) 1) true)) := true)
 
  (tests "constraint is required"
-        (utils.test/throws? (maximize (fresh) nil))
+        (utils.test/throws? (maximize (api/fresh) nil))
         := true)
  (tests "types are unified across the objective and constraint"
-        (let [a (fresh)]
+        (let [a (api/fresh)]
 
           (utils.test/throws? (maximize (+ a 12) (contains? a 12)))
           := true
@@ -92,6 +79,7 @@
   [form]
   `(api/dither ~form))
 
+;; moves to fns
 (defn conjunction [& args]
   (loop [expr (first args)
          more (rest args)]
@@ -104,6 +92,7 @@
   #_(apply api/conjunction args) ;; todo - though their implementations are the same, calling the impl function makes some tests fail. why?
   )
 
+;; moves to fns
 (defn disjunction [& args]
   (loop [expr (first args)
          more (rest args)]
@@ -114,28 +103,33 @@
        (rest more))
       expr)))
 
+;; moves to fns
 (defmacro ^:introduced forall [[bind set-expr] constraint-expr]
-  `(let [~bind (api/lexical (fresh))]
+  `(let [~bind (api/lexical (api/fresh))]
      (?> (terms.introduced/forall 
           '~bind  
           [~bind ~set-expr ~constraint-expr]))))
 
+;; moves to fns
 (defmacro ^:introduced for-set [[bind set-expr] generator-expr]
-  `(let [~bind (api/lexical (fresh))]
+  `(let [~bind (api/lexical (api/fresh))]
      (?> (terms.introduced/for-set
           '~bind
           [~bind ~set-expr ~generator-expr]))))
 
+;; moves to root
 (defn dithered? [x]
   (boolean (api/cacheing-decisions x)))
 
+;; moves to root
 (def bind api/bind)
 
+;; moves to root
 (defn fresh-set [super]
-  (bind super (fresh)))
+  (bind super (api/fresh)))
 
 (tests
  (protocols/decisions 1)
- (dithered? (?> (+ (fresh) 1))) := true
+ (dithered? (?> (+ (api/fresh) 1))) := true
  (dithered? (?> (+ 1 1))) := false
  )

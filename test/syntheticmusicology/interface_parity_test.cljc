@@ -9,31 +9,31 @@
 (tests
  "functions"
  true :=
- (let [var (main/fresh)]
+ (let [var (api/fresh)]
    (= (api/dither (+ 1 var))
       (pcore/+ 1 var)))
   
-  (pcore/+ 1 (main/fresh))
+  (pcore/+ 1 (api/fresh))
   )
 
 (tests
  true :=
- (let [var (main/fresh)]
+ (let [var (api/fresh)]
    (= (api/dither (* 1 var))
       (pcore/* 1 var)))
 
- (pcore/+ 1 (main/fresh)))
+ (pcore/+ 1 (api/fresh)))
 
 (tests 
  "macros"
   true :=
-  (let [var (main/fresh)]
+  (let [var (api/fresh)]
     (= (api/dither (or true var))
        (pcore/or true var)))
   
   true :=
-  (let [var (main/fresh)
-        varb (main/fresh)]
+  (let [var (api/fresh)
+        varb (api/fresh)]
     (= (api/dither (or (= varb 1) var))
        (pcore/or (api/dither (= varb 1)) var)))
   )
@@ -42,6 +42,6 @@
 (tests
  "special forms"
  true :=
- (let [var (main/fresh)]
+ (let [var (api/fresh)]
    (= (api/dither (if var (when var true) (when (not var) false)))
       (pcore/if var (api/dither (when var true)) (api/dither (when (not var) false))))))

@@ -450,5 +450,18 @@
          (apply #'conjunction)
          protocols/translate)))
 
+(defn fresh
+  "Mint a fresh decision."
+  ([]
+   (fresh (str (gensym))))
+  ([id]
+   {:pre [(string? id)]}
+   (if (re-matches #"[A-Za-z][A-Za-z0-9_]*" id)
+     (->Decision id)
+     (throw (ex-info
+             (>> {:id id}
+                 "Invalid identifier: {{id}}. Identifiers should start with a letter and consist only of letters, numbers, and underscores.")
+             {})))))
+
 (def cacheing-validate (memoize protocols/validate))
 (def cacheing-decisions (memoize protocols/decisions))

@@ -4,6 +4,7 @@
             [hyperfiddle.rcf :refer [tests]]
             [syntheticmusicology.petrushka.auto :as main]
             [petrushka.utils.test :refer [throws?]]
+            [syntheticmusicology.petrushka.shared :as shared :refer [fresh]]
             [petrushka.utils.symbol :as symbols]))
 
 
@@ -11,22 +12,22 @@
 
   (tests "internal decision is validated as numeric"
     (throws?
-     (main/forall [a (main/fresh)] (= a #{})))
+     (main/forall [a (shared/fresh)] (= a #{})))
     := true)
 
 
   (tests "internal decision is validated as numeric"
     (throws?
-     (main/forall [a (main/fresh)] (contains? a 1)))
+     (main/forall [a (shared/fresh)] (contains? a 1)))
     := true)
 
   (tests "internal decision is hidden from external retrieval"
     (count
      (protocols/decisions
-      (main/forall [a (main/fresh)] (= a 1))))
+      (main/forall [a (shared/fresh)] (= a 1))))
     := 1)
 
-  (let [x (main/fresh)
+  (let [x (shared/fresh)
         res (main/satisfy
              (main/forall [a (main/bind (range 100) x)]
                (= 5 (mod a 12))))]
@@ -37,7 +38,7 @@
                         (main/forall [a (main/bind (range 12) set-decision)]
                           (when (contains? set-decision (mod (+ a 1) 12))
                             (not (contains? set-decision (mod (+ a 2) 12)))))))
-        x (main/fresh)
+        x (shared/fresh)
         res (main/satisfy
              (cluster-free x))
         validate (fn [s]
@@ -55,16 +56,16 @@
 
   (tests "internal decision is validated as numeric"
     (throws?
-     (main/for-set [a (main/fresh)] (if (= a #{}) 1 2)))
+     (main/for-set [a (shared/fresh)] (if (= a #{}) 1 2)))
     := true) 
 
   (tests "internal decision is hidden from external retrieval"
     (count
      (protocols/decisions
-      (main/for-set [a (main/fresh)] (+ a 1))))
+      (main/for-set [a (shared/fresh)] (+ a 1))))
     := 1)
 
-  (let [x (main/fresh)
+  (let [x (shared/fresh)
         res (main/satisfy
              (=
               #{1 2 3}

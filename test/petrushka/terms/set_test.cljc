@@ -1,8 +1,9 @@
 (ns petrushka.terms.set-test
   (:require [hyperfiddle.rcf :refer [tests]]
-            [syntheticmusicology.petrushka.auto :as main :refer [bind ?> fresh fresh-set satisfy]]
+            [syntheticmusicology.petrushka.auto :as main :refer [bind ?> fresh-set satisfy]]
             [petrushka.protocols :as protocols]
             [petrushka.types :as types]
+            [syntheticmusicology.petrushka.shared :refer [fresh]]
             [petrushka.set :as p.set]
             [petrushka.utils.test :refer [throws? only-val]]
             [clojure.set :as set]))
