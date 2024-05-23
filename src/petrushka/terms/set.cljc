@@ -1,7 +1,7 @@
 (ns petrushka.terms.set
   (:require [petrushka.protocols :as protocols]
             [petrushka.types :as types]
-            [petrushka.api :as api]
+            [syntheticmusicology.petrushka.shared :as api]
             [petrushka.set :as p.set]
             [clojure.set :as set]))
 

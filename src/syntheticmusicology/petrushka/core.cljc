@@ -1,5 +1,5 @@
 (ns syntheticmusicology.petrushka.core
-  (:require [petrushka.api :as api]
+  (:require [syntheticmusicology.petrushka.shared :as api]
             [petrushka.terms.core :as terms.core]
             [petrushka.protocols :as protocols]
             [petrushka.utils.symbol :as symbols])

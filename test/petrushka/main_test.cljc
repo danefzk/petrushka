@@ -4,7 +4,7 @@
             [petrushka.main :as main :refer [bind ?> fresh satisfy]]
             [petrushka.types :as types]
             [petrushka.utils.test :refer [throws?]]
-            [petrushka.api :as api]))
+            [syntheticmusicology.petrushka.shared :as api]))
 
 
 (tests "conjunction does not stack overflow on many clauses"

@@ -9,7 +9,7 @@
             [petrushka.types :as types]
             [petrushka.utils.string :refer [>>]]
             [petrushka.utils.test :as utils.test]
-            [petrushka.api :as api] 
+            [syntheticmusicology.petrushka.shared :as api] 
             :reload))
 
 (comment

@@ -4,7 +4,7 @@
             [petrushka.protocols :as protocols]
             [petrushka.types :as types]
             [petrushka.utils.test :refer [only-val throws?]]
-            [petrushka.api] ;; for defmethods
+            [syntheticmusicology.petrushka.shared] ;; for defmethods
             ))
 
 (comment

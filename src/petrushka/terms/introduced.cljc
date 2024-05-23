@@ -2,7 +2,7 @@
   (:require [petrushka.protocols :as protocols]
             [petrushka.types :as types]
             [petrushka.utils.string :refer [>>]]
-            [petrushka.api :as api]
+            [syntheticmusicology.petrushka.shared :as api]
             [petrushka.utils.symbol :as symbols]))
 
 (defrecord TermForAll [bind-sym argv]

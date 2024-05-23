@@ -1,5 +1,5 @@
 (ns petrushka.solver
-  (:require [petrushka.api :as api]
+  (:require [syntheticmusicology.petrushka.shared :as api]
             [petrushka.flattener :as flattener]
             [petrushka.protocols :as protocols]
             [petrushka.types :as types]

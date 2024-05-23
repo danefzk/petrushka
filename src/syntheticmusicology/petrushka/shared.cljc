@@ -1,4 +1,4 @@
-(ns petrushka.api
+(ns syntheticmusicology.petrushka.shared
   (:require [clojure.spec.alpha :as spec]
             [clojure.spec.alpha :as s]
             [clojure.string :as string]

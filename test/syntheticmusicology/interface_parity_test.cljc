@@ -2,7 +2,7 @@
   "tests that the auto interface and the encapsulated 
    namespaces return identically"
   (:require [hyperfiddle.rcf :refer [tests]]
-            [petrushka.api :as api]
+            [syntheticmusicology.petrushka.shared :as api]
             [petrushka.main :as main]
             [syntheticmusicology.petrushka.core :as pcore]))
 

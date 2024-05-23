@@ -1,6 +1,6 @@
 (ns petrushka.terms.core
   (:require [clojure.spec.alpha :as s]
-            [petrushka.api :as api]
+            [syntheticmusicology.petrushka.shared :as api]
             [petrushka.protocols :as protocols]
             [petrushka.types :as types]
             [petrushka.utils.string :refer [>>]]

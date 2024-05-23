@@ -2,7 +2,7 @@
   (:require [petrushka.terms.core :as terms.core]
             [petrushka.terms.utils :as terms.utils]
             [petrushka.protocols :as protocols]
-            [petrushka.api :as api]
+            [syntheticmusicology.petrushka.shared :as api]
             [petrushka.types :as types]))
 
 (defn simple-term? [node]
