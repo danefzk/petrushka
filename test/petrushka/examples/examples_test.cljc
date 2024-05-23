@@ -1,9 +1,10 @@
 (ns petrushka.examples.examples-test
   (:require [hyperfiddle.rcf :refer [tests]]
             [petrushka.protocols :as protocols]
-            [syntheticmusicology.petrushka.auto :as main :refer [conjunction bind ?> satisfy solve-for]]
+            [syntheticmusicology.petrushka.auto :as main :refer [bind ?> satisfy solve-for]]
             [syntheticmusicology.petrushka.shared :refer [fresh]]
             [petrushka.types :as types]
+            [syntheticmusicology.petrushka.fns :as fns :refer [conjunction]]
             [petrushka.solver :as solver]
             [petrushka.utils.test :refer [throws?]]
             [hyperfiddle.rcf :as rcf]))
@@ -13,7 +14,7 @@
  (let [mesos (take 5 (repeatedly fresh))
        cluster-free (fn [set-decision]
                       (?>
-                       (main/forall [a (bind (range 12) set-decision)]
+                       (fns/forall [a (bind (range 12) set-decision)]
                          (when (contains? set-decision (mod (+ a 1) 12))
                            (not (contains? set-decision (mod (+ a 2) 12)))))))
        constraint (?>

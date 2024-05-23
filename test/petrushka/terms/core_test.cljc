@@ -3,6 +3,7 @@
             [syntheticmusicology.petrushka.auto :as main :refer [?> bind satisfy solve-for]]
             [petrushka.protocols :as protocols]
             [petrushka.types :as types]
+            [syntheticmusicology.petrushka.fns :as fns]
             [petrushka.utils.test :refer [only-val throws?]]
             [syntheticmusicology.petrushka.shared :refer [fresh]] ;; for defmethods
             ))
@@ -222,7 +223,7 @@
          (boolean 
           (satisfy
            (and
-            (apply main/conjunction (map (fn [n v] (?> (= v n))) nums vars))
+            (apply fns/conjunction (map (fn [n v] (?> (= v n))) nums vars))
             (= (apply max vars) m))))
          := true
          ))
@@ -240,7 +241,7 @@
             (boolean
              (satisfy
               (and
-               (apply main/conjunction (map (fn [n v] (?> (= v n))) nums vars))
+               (apply fns/conjunction (map (fn [n v] (?> (= v n))) nums vars))
                (= (apply min vars) m))))
             := true))
   
@@ -390,7 +391,7 @@
                  (= b y)
                  (= (rem x y) (rem a b))
                  (= (mod x y) (mod a b)))))
-          (apply main/conjunction)
+          (apply fns/conjunction)
           satisfy))))
 
 (tests "let"

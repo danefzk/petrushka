@@ -79,44 +79,6 @@
   [form]
   `(api/dither ~form))
 
-;; moves to fns
-(defn conjunction [& args]
-  (loop [expr (first args)
-         more (rest args)]
-    (if (seq more)
-      (recur
-       (?> 
-        (and expr (first more)))
-       (rest more))
-      expr))
-  #_(apply api/conjunction args) ;; todo - though their implementations are the same, calling the impl function makes some tests fail. why?
-  )
-
-;; moves to fns
-(defn disjunction [& args]
-  (loop [expr (first args)
-         more (rest args)]
-    (if (seq more)
-      (recur
-       (?>
-        (or expr (first more)))
-       (rest more))
-      expr)))
-
-;; moves to fns
-(defmacro ^:introduced forall [[bind set-expr] constraint-expr]
-  `(let [~bind (api/lexical (api/fresh))]
-     (?> (terms.introduced/forall 
-          '~bind  
-          [~bind ~set-expr ~constraint-expr]))))
-
-;; moves to fns
-(defmacro ^:introduced for-set [[bind set-expr] generator-expr]
-  `(let [~bind (api/lexical (api/fresh))]
-     (?> (terms.introduced/for-set
-          '~bind
-          [~bind ~set-expr ~generator-expr]))))
-
 ;; moves to root
 (defn dithered? [x]
   (boolean (api/cacheing-decisions x)))

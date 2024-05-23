@@ -4,7 +4,8 @@
             [syntheticmusicology.petrushka.auto :as main :refer [bind ?> satisfy]]
             [petrushka.types :as types]
             [syntheticmusicology.petrushka.shared :as api :refer [fresh]]
-            [petrushka.utils.test :refer [throws?]]))
+            [petrushka.utils.test :refer [throws?]]
+            [syntheticmusicology.petrushka.fns :as fns]))
 
 
 (tests "conjunction does not stack overflow on many clauses"
@@ -18,4 +19,4 @@
                          (= a x)
                          (= b y)
                          (= (+ a b) (+ x y)))))
-                  (apply main/conjunction)))))
+                  (apply fns/conjunction)))))
