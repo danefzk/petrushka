@@ -1,4 +1,4 @@
-(ns petrushka.main
+(ns syntheticmusicology.petrushka.auto
   (:require [hyperfiddle.rcf :refer [tests]]
             [petrushka.protocols :as protocols] 
             [petrushka.solver :as solver]

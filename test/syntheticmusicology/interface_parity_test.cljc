@@ -3,7 +3,7 @@
    namespaces return identically"
   (:require [hyperfiddle.rcf :refer [tests]]
             [syntheticmusicology.petrushka.shared :as api]
-            [petrushka.main :as main]
+            [syntheticmusicology.petrushka.auto :as main]
             [syntheticmusicology.petrushka.core :as pcore]))
 
 (tests

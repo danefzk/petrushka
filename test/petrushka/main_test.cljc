@@ -1,7 +1,7 @@
 (ns petrushka.main-test
   (:require [hyperfiddle.rcf :refer [tests]]
             [petrushka.protocols :as protocols]
-            [petrushka.main :as main :refer [bind ?> fresh satisfy]]
+            [syntheticmusicology.petrushka.auto :as main :refer [bind ?> fresh satisfy]]
             [petrushka.types :as types]
             [petrushka.utils.test :refer [throws?]]
             [syntheticmusicology.petrushka.shared :as api]))

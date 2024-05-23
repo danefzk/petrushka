@@ -1,6 +1,6 @@
 (ns petrushka.terms.set-test
   (:require [hyperfiddle.rcf :refer [tests]]
-            [petrushka.main :as main :refer [bind ?> fresh fresh-set satisfy]]
+            [syntheticmusicology.petrushka.auto :as main :refer [bind ?> fresh fresh-set satisfy]]
             [petrushka.protocols :as protocols]
             [petrushka.types :as types]
             [petrushka.set :as p.set]

@@ -2,7 +2,7 @@
   (:require [petrushka.protocols :as protocols]
             [petrushka.types :as types]
             [hyperfiddle.rcf :refer [tests]]
-            [petrushka.main :as main]
+            [syntheticmusicology.petrushka.auto :as main]
             [petrushka.utils.test :refer [throws?]]
             [petrushka.utils.symbol :as symbols]))
 

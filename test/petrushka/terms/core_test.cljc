@@ -1,6 +1,6 @@
 (ns petrushka.terms.core-test
   (:require [hyperfiddle.rcf :refer [tests]]
-            [petrushka.main :as main :refer [?> bind fresh satisfy solve-for]]
+            [syntheticmusicology.petrushka.auto :as main :refer [?> bind fresh satisfy solve-for]]
             [petrushka.protocols :as protocols]
             [petrushka.types :as types]
             [petrushka.utils.test :refer [only-val throws?]]

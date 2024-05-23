@@ -1,7 +1,7 @@
 (ns petrushka.examples.examples-test
   (:require [hyperfiddle.rcf :refer [tests]]
             [petrushka.protocols :as protocols]
-            [petrushka.main :as main :refer [conjunction bind ?> fresh satisfy solve-for]]
+            [syntheticmusicology.petrushka.auto :as main :refer [conjunction bind ?> fresh satisfy solve-for]]
             [petrushka.types :as types]
             [petrushka.solver :as solver]
             [petrushka.utils.test :refer [throws?]]
