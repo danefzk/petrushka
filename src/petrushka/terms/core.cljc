@@ -384,7 +384,7 @@
             (api/validate-domains self))
   (translate [self] (translate-conditional self)))
 
-(defmethod protocols/rewrite-symbol 'if [_]
+#_(defmethod protocols/rewrite-symbol 'if [_]
   (fn if-constructor [& args]
     (->TermIf (vec args))))
 

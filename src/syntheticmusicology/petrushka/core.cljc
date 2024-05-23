@@ -28,4 +28,22 @@
 
 (defmacrobind or terms.core/->TermOr)
 
+(defn if-constructor [& args]
+  (terms.core/->TermIf (vec args)))
+
+(defmethod protocols/rewrite-symbol 'if [_] if-constructor)
+
+(defmacro if 
+  "note: 'if' is a special form in the clojure compiler.
+   Trying to import this macro into another namespace using :refer [if] will not overwrite the speical form.
+   Instead, fully qualify the symbol when you intend to use it: 
+
+   (:require [this-namespace :as ns])
+   (ns/if ...args)
+   "
+  [& args#]
+  `(if (some api/cacheing-decisions ~(vec args#))
+     (api/cacheing-validate (apply if-constructor ~(vec args#)))
+     ~(apply list 'if args#)))
+
 
